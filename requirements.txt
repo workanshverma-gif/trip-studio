@@ -1,0 +1,23 @@
+# Trip Studio - runtime dependencies (Python 3.10+).
+# Ranges are used so pip can pick builds that exist for YOUR Python/OS.
+# Exact versions that were tested together are in requirements-lock.txt.
+
+# --- web app ---
+fastapi>=0.110
+uvicorn[standard]>=0.27
+
+# --- images ---
+pillow>=10.1
+pillow-heif>=0.16          # iPhone .HEIC/.HEIF photos (optional at runtime; see CLAUDE.md troubleshooting)
+numpy>=1.26
+opencv-python-headless>=4.9,<5   # <5: OpenCV 5 removed the Haar face detector used for smart cropping
+imagehash>=4.3             # perceptual hashes for burst / near-duplicate detection
+
+# --- local AI (free, runs on CPU) ---
+# On Windows/Linux this index serves small CPU-only PyTorch wheels (saves ~2 GB). On macOS pip uses PyPI.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+torchvision>=0.17
+open_clip_torch>=2.24
+
+# PDF export uses Pillow (no extra package needed).

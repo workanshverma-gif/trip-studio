@@ -1,0 +1,66 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- OS / editor junk ----
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# ---- Trip Studio output - NEVER commit personal data ----
+Sorted_Trip_Studio/
+**/Sorted_Trip_Studio/
+Travel_Book_Collages/
+**/Travel_Book_Collages/
+sort_history.json
+Needs_Review_Duplicates/
+Top_Picks_Hero_Shots/
+Tickets_and_Receipts/
+
+# ---- Personal / test photos & videos (use the generated samples in tests/ instead) ----
+sample_photos/
+my_photos/
+test_photos/
+photos/
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.heif
+*.webp
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.pdf
+
+# ---- Caches / temp ----
+.cache/
+*.log
+tmp/
+temp/
+.hf_cache/
+.claude/
+.playwright/
+test-results/
+playwright-report/
+
+# ...except README screenshots
+!docs/images/
+!docs/images/*

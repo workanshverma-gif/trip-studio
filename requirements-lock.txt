@@ -1,0 +1,13 @@
+# Exact versions Trip Studio was developed and tested with (Windows 11, Python 3.14).
+# Use if you want a reproducible install:  pip install -r requirements-lock.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+pillow==13.0.0
+pillow-heif==1.9.0
+numpy==2.5.4
+opencv-python-headless==4.14.0.94
+imagehash==4.3.2
+torch==2.15.0
+torchvision==0.29.2
+open_clip_torch==4.2.2

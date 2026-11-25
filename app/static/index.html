@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23E0703A%27/%3E%3Ccircle cx=%2716%27 cy=%2717%27 r=%276%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272.5%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="book">Travel Book</button>
+    <button class="tab" data-tab="collage">Custom Collage</button>
+  </nav>
+  <div id="viewDashboard">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Trip Studio · 100% local</div>
+      <h1>Sorting my <button id="folderName" class="accent" title="Click to type a folder path">…</button> folder</h1>
+      <p id="folderMeta" class="muted">Choose a folder of photos to begin.</p>
+    </div>
+    <div class="actions">
+      <button id="btnSelect" class="btn">Select Folder</button>
+      <button id="btnDry" class="btn" disabled>Preview Sort (Dry Run)</button>
+      <button id="btnStart" class="btn primary" disabled>Start Sorting</button>
+      <button id="btnUndo" class="btn ghost" disabled>Undo Last Sort</button>
+      <button id="btnBookTop" class="btn ghost" disabled>📖 Travel Book</button>
+    </div>
+  </header>
+
+  <section class="settings card">
+    <label class="toggle">
+      <input type="checkbox" id="optTimeline">
+      <span class="track"><span class="knob"></span></span>
+      Sort by Trip Timeline (Day-by-Day)
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="optFilter" checked>
+      <span class="track"><span class="knob"></span></span>
+      Filter Blurry &amp; Duplicates
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="optCopy" checked>
+      <span class="track"><span class="knob"></span></span>
+      Keep originals in place (copy files)
+    </label>
+    <label class="field">
+      <span>Custom Categories</span>
+      <input type="text" id="optCustom" placeholder="Comma-separated, e.g., Dogs, Coffee, Mountains">
+    </label>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b data-stat="checked">0</b><span>Files Checked</span></div>
+    <div class="stat"><b data-stat="sorted">0</b><span>Photos Sorted</span></div>
+    <div class="stat"><b data-stat="review">0</b><span>Duplicates &amp; Blurry</span></div>
+    <div class="stat"><b data-stat="receipts">0</b><span>Receipts Found</span></div>
+    <div class="stat"><b data-stat="picks">0</b><span>Top Picks</span></div>
+    <div class="stat"><b data-stat="saved" data-dec="1">0</b><span>Space Saved (MB)</span></div>
+  </section>
+
+  <main class="board">
+    <aside class="col" id="colLeft">
+      <h2>Categories</h2>
+      <div id="catList" class="cards"></div>
+    </aside>
+
+    <section class="stage card" id="stage">
+      <div class="progress"><i id="progressBar"></i></div>
+      <div class="swirl" id="swirl"></div>
+      <div class="stage-label" id="stageLabel">Pick a folder to see your photos swirl here</div>
+      <div class="summary" id="summary" hidden>
+        <svg class="check" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27l8 8 16-17"/></svg>
+        <h3 id="sumTitle">All sorted!</h3>
+        <p id="sumText"></p>
+        <button class="btn primary" id="btnBook">Open My Travel Book</button>
+        <button class="btn ghost small" id="btnSumClose">Close</button>
+      </div>
+    </section>
+
+    <aside class="col" id="colRight">
+      <h2>Special Collections</h2>
+      <div id="specialList" class="cards"></div>
+    </aside>
+  </main>
+
+  <section class="card timeline" id="timelineView" hidden>
+    <div class="tl-head"><h2>Day-by-Day Timeline</h2><span class="muted" id="tlSummary"></span></div>
+    <div id="tlDays"></div>
+  </section>
+  </div>
+
+  <div id="viewCollage" hidden>
+    <div class="cc-head">
+      <div><h1>Custom Collage</h1><p class="muted">Pick your own photos, choose a layout, and build a collage.</p></div>
+      <label class="field cc-src"><span>Browse</span><select id="ccSource"></select></label>
+    </div>
+    <div id="ccEmpty" class="muted cc-empty" hidden>Sort your photos first, then come back to hand-pick a collage.</div>
+    <div class="pgrid" id="ccGrid"></div>
+    <div id="ccBarHost"></div>
+  </div>
+</div>
+
+<div class="modal gal" id="gallery" hidden>
+  <div class="gal-card">
+    <div class="gal-head">
+      <div><h3 id="galTitle"></h3><span class="muted" id="galCount"></span></div>
+      <div class="gal-actions">
+        <button class="btn small" id="galOpenFolder">Open Folder on Computer</button>
+        <button class="btn small ghost" id="galClose">Close</button>
+      </div>
+    </div>
+    <div class="pgrid" id="galGrid"></div>
+    <div id="galBarHost"></div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-bar">
+    <div><b id="lbName"></b><span id="lbMeta"></span></div>
+    <div class="lb-actions">
+      <button class="btn small" id="lbTab">Open in New Tab</button>
+      <button class="btn small" id="lbClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="cpreview" hidden>
+  <div class="modal-card cprev">
+    <h3 id="cpTitle">Your collage</h3>
+    <div class="cp-img"><img id="cpImg" alt="Collage preview"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="cpClose">Close</button>
+      <a class="btn" id="cpDownload" href="#">Download PNG</a>
+      <button class="btn primary" id="cpSave">Save to Travel Book</button>
+    </div>
+  </div>
+</div>
+<div class="book" id="book" hidden>
+  <div class="book-bar">
+    <div class="book-title"><b id="bookTitle">Travel Book</b><span id="bookRange"></span></div>
+    <div class="book-search">
+      <input id="bookSearch" type="search" autocomplete="off" placeholder='Search your trip: "Food", "Sunset", "Day 2"…'>
+      <span id="searchInfo"></span>
+    </div>
+    <div class="book-actions">
+      <a class="btn primary small" id="btnPdf" href="/api/book/pdf">Export Full Book as PDF</a>
+      <button class="btn small" id="btnBookClose">Close</button>
+    </div>
+  </div>
+  <div class="chips" id="matchChips"></div>
+  <div class="book-stage">
+    <div id="flip"></div>
+    <div class="building" id="bookBuilding"><b id="buildMsg">Designing your collages…</b><progress id="buildBar" max="100" value="0"></progress></div>
+  </div>
+  <div class="book-nav">
+    <button class="btn small" id="bookPrev">‹ Prev</button>
+    <span id="pageInfo"></span>
+    <button class="btn small" id="bookNext">Next ›</button>
+  </div>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <h3>Preview: here's how your files will be sorted</h3>
+    <p class="muted" id="modalSub"></p>
+    <div id="planList" class="plan"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnModalCancel">Cancel</button>
+      <button class="btn primary" id="btnApply">Apply Sort</button>
+    </div>
+  </div>
+</div>
+<canvas id="confetti"></canvas>
+<div id="toast" class="toast" hidden></div>
+<script src="/static/vendor/page-flip.browser.js"></script>
+<script src="/static/book.js"></script>
+<script src="/static/library.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

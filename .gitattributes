@@ -1,0 +1,6 @@
+# Keep LF in the repo so run.sh works on macOS/Linux; keep CRLF for Windows batch files.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.sh text eol=lf
+*.png binary
+*.xml text eol=lf
