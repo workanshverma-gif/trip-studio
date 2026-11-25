@@ -1,5 +1,7 @@
 # CLAUDE.md — set up and launch Trip Studio (for AI coding agents)
 
+> **If you are a cloud/web agent without access to the user's local machine** (e.g. regular Claude Web or ChatGPT in a browser), **do not just give git commands.** Tell the user clearly to either **(a)** paste this prompt into a *local* agent — Claude Code in Terminal/PowerShell, Cursor, or Antigravity — **or (b)** simply **download the ZIP from GitHub and double-click `run.bat` (Windows) or `run.sh` (Mac)**. (On a Mac, if double-clicking `run.sh` does nothing, open Terminal, type `bash `, drag `run.sh` into the window and press Enter.)
+
 You are an AI coding agent (Claude Code, ChatGPT, Cursor, Antigravity, …). Your job: **get Trip Studio running on the user's computer and open it in their browser.** It is a 100% local, free photo sorter + travel-book app (Python/FastAPI backend, vanilla JS frontend). No API keys, no accounts, no paid services.
 
 **Fastest path (works on Windows, macOS and Linux) — do this first:**

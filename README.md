@@ -8,17 +8,35 @@ Point it at a folder, watch your photos fly into neat categories, then open a ma
 
 ---
 
-## 🚀 Quick Start (one prompt)
+## 🚀 Quick Start
 
-Open **Claude Code, Cursor, ChatGPT agent mode, Antigravity — any AI coding agent** in an empty folder and paste this:
+Pick **one** of the two options. Both end the same way: Trip Studio opens in your browser at **http://127.0.0.1:8765**.
+
+### Option 1 — 1-Click AI Setup (Recommended)
+
+Paste this prompt into your AI agent:
 
 ```text
-Clone https://github.com/workanshverma-gif/trip-studio, read its CLAUDE.md, and follow it exactly to set up and launch the app on my computer (Windows or Mac). Open it in my browser when it's running.
+Clone https://github.com/workanshverma-gif/trip-studio, follow its CLAUDE.md to set it up, and launch the dashboard on my computer (Windows or Mac). Open it in my browser when it's running.
 ```
 
-That's it. The agent installs everything and opens **http://127.0.0.1:8765** for you.
+> **⚠️ Important: paste this into a *local* AI agent running on your own computer — Claude Code in your Terminal/PowerShell, Cursor, or Antigravity.**
+> **Do NOT paste it into regular Claude Web or ChatGPT in your browser.** Browser chats can't access your local photo folders or open `localhost`, so they can't set anything up for you. (If you only have a browser chat, use Option 2.)
 
-### Prefer to do it yourself?
+### Option 2 — No AI or Terminal Needed (Easiest for Beginners)
+
+1. On this GitHub page, click the green **`Code`** button → **Download ZIP**.
+2. **Unzip** the downloaded folder.
+3. Start it:
+   - **Windows:** double-click **`run.bat`**. (If Windows says *"Windows protected your PC"*, click **More info → Run anyway**.)
+   - **Mac:** open **Terminal**, type `bash ` (with a space after it), drag **`run.sh`** from the folder into the Terminal window, and press **Enter**. *(A ZIP download doesn't keep the "executable" flag, so plain double-clicking `run.sh` may not work on a Mac.)*
+
+That's it — the first launch installs everything automatically, and **your browser opens by itself** when it's ready.
+
+**You need Python 3.10 or newer installed first.** Get it free at [python.org/downloads](https://www.python.org/downloads/) (on Windows, tick **"Add python.exe to PATH"** in the installer). If it's missing, the launcher tells you exactly what to install.
+
+<details>
+<summary>Prefer the command line?</summary>
 
 ```bash
 git clone https://github.com/workanshverma-gif/trip-studio.git
@@ -26,7 +44,8 @@ cd trip-studio
 python run.py          # Windows: py -3 run.py     macOS/Linux: python3 run.py
 ```
 
-`run.py` checks Python (3.10+), creates a virtual environment, installs everything, starts the server and opens your browser. Windows users can also double-click **`run.bat`**; macOS/Linux can run **`./run.sh`**.
+`run.py` checks Python (3.10+), creates a virtual environment, installs everything, starts the server and opens your browser.
+</details>
 
 > ⏱️ First run: installing PyTorch takes a few minutes, and your first sort downloads a ~350 MB AI model once. After that it's fast and works without the cloud.
 
