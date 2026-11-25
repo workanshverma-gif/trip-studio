@@ -13,7 +13,7 @@ Point it at a folder, watch your photos fly into neat categories, then open a ma
 Open **Claude Code, Cursor, ChatGPT agent mode, Antigravity — any AI coding agent** in an empty folder and paste this:
 
 ```text
-Clone https://github.com/YOUR-USERNAME/trip-studio, read its CLAUDE.md, and follow it exactly to set up and launch the app on my computer (Windows or Mac). Open it in my browser when it's running.
+Clone https://github.com/workanshverma-gif/trip-studio, read its CLAUDE.md, and follow it exactly to set up and launch the app on my computer (Windows or Mac). Open it in my browser when it's running.
 ```
 
 That's it. The agent installs everything and opens **http://127.0.0.1:8765** for you.
@@ -21,7 +21,7 @@ That's it. The agent installs everything and opens **http://127.0.0.1:8765** for
 ### Prefer to do it yourself?
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/trip-studio.git
+git clone https://github.com/workanshverma-gif/trip-studio.git
 cd trip-studio
 python run.py          # Windows: py -3 run.py     macOS/Linux: python3 run.py
 ```
