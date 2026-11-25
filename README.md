@@ -14,11 +14,15 @@ Pick **one** of the two options. Both end the same way: Trip Studio opens in you
 
 ### Option 1 — 1-Click AI Setup (Recommended)
 
-Paste this prompt into your AI agent:
+1. **Put all your trip photos into one folder** on your computer.
+2. **Open a terminal and launch your local AI agent.** Open **PowerShell** (Windows) or **Terminal** (Mac), go to your photos folder (or the folder just above it), and start your local AI agent — for example **Claude Code**, **Cursor** or **Antigravity**.
+3. **Paste the one-line prompt below.** The agent clones this repo, sets everything up, and launches the dashboard in your browser.
 
 ```text
-Clone https://github.com/workanshverma-gif/trip-studio, follow its CLAUDE.md to set it up, and launch the dashboard on my computer (Windows or Mac). Open it in my browser when it's running.
+Clone https://github.com/workanshverma-gif/trip-studio into a new folder (next to my photos folder, not inside it), follow its CLAUDE.md to set it up, and launch the dashboard on my computer (Windows or Mac). Open it in my browser when it's running.
 ```
+
+When the dashboard opens, click **Select Folder** and pick the photos folder from step 1.
 
 > **⚠️ Important: paste this into a *local* AI agent running on your own computer — Claude Code in your Terminal/PowerShell, Cursor, or Antigravity.**
 > **Do NOT paste it into regular Claude Web or ChatGPT in your browser.** Browser chats can't access your local photo folders or open `localhost`, so they can't set anything up for you. (If you only have a browser chat, use Option 2.)
